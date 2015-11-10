@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="./scripts/library/jquery.js"></script>
+    <script type="text/javascript" src="./scripts/library/tools.js"></script>
+    <script type="text/javascript" src="./scripts/library/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.timestamp = null; // Remove timestamp for CRM compatibility
+        var Xrm;
+
+        $(document).ready(function () {
+            var storeAttribute = function () {
+                /// <summary>
+                /// Store editor component's text in the specified attribute
+                /// </summary>
+                var value = CKEDITOR.instances.RTEditor.getData();
+
+                // Convert RGB color to HEX color because SSRS only support HEX color
+                value = value.replace(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/g, function (match, p1, p2, p3) {
+                    return "#"
+                        + BackToTheCrm.Tools.toHex(p1)
+                        + BackToTheCrm.Tools.toHex(p2)
+                        + BackToTheCrm.Tools.toHex(p3);
+                });
+
+                Xrm.Page.getAttribute(attributeName).setValue(value);
+            };
+
+            var Xrm = window.parent.Xrm;
+            var attributeName = BackToTheCrm.Tools.getURLParameter("data"); // Retrieve the attribute name
+            var text = Xrm.Page.getAttribute(attributeName).getValue() || "";
+            document.getElementById('RTEditor').value = text;
+
+            CKEDITOR.instances.RTEditor.on('change', function () {
+                storeAttribute();
+            });
+
+            CKEDITOR.instances.RTEditor.on('blur', function () {
+                storeAttribute();
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+    <textarea class="ckeditor" cols="80" id="RTEditor" name="RTEditor" rows="10"></textarea>
+</body>
+</html>
