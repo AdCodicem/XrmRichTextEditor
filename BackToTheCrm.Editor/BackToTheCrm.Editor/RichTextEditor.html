@@ -32,13 +32,14 @@
             var attributeName = BackToTheCrm.Tools.getURLParameter("data"); // Retrieve the attribute name
             var text = Xrm.Page.getAttribute(attributeName).getValue() || "";
             document.getElementById('RTEditor').value = text;
+            CKEDITOR.on('instanceReady', function (ev) {
+                CKEDITOR.instances.RTEditor.on('change', function () {
+                    storeAttribute();
+                });
 
-            CKEDITOR.instances.RTEditor.on('change', function () {
-                storeAttribute();
-            });
-
-            CKEDITOR.instances.RTEditor.on('blur', function () {
-                storeAttribute();
+                CKEDITOR.instances.RTEditor.on('blur', function () {
+                    storeAttribute();
+                });
             });
 
         });
