@@ -92,6 +92,7 @@
     <Content Include="scripts\library\ckeditor\skins\moono\images\lock_open.png" />
     <Content Include="scripts\library\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="scripts\library\ckeditor\styles.js" />
+    <Content Include="scripts\library\jquery.js" />
     <Content Include="scripts\library\tools.js" />
     <Content Include="Web.config" />
   </ItemGroup>
