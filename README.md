@@ -1,5 +1,5 @@
 # Features
-*Currently XrmRichTextEditor is only available for CRM 2015 and Online, a future release will come for CRM 2011 and 2013.*
+*Currently XrmRichTextEditor is only available for CRM 2015, 2016 and Online, a future release will come for CRM 2011 and 2013.*
 
 XrmRichTextEditor is a solution which provide you a [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) HTML editor. 
 This component is really easy to use, check the [Wiki](https://github.com/BackToTheCrm/XrmRichTextEditor/wiki) !
